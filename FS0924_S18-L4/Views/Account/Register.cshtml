@@ -1,0 +1,57 @@
+﻿@model RegisterUserViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<form method="post" asp-controller="Account" asp-action="Register">
+    <div class="my-2">
+        <label class="form-label" for="firstName" asp-for="@Model.FirstName"></label>
+        <input class="form-control" id="firstName" asp-for="@Model.FirstName" />
+        <span class="text-danger" asp-validation-for="@Model.FirstName"></span>
+    </div>
+
+    <div class="my-2">
+        <label class="form-label" for="lastName" asp-for="@Model.LastName"></label>
+        <input class="form-control" id="lastName" asp-for="@Model.LastName" />
+        <span class="text-danger" asp-validation-for="@Model.LastName"></span>
+    </div>
+
+    <div class="my-2">
+        <label class="form-label" for="email" asp-for="@Model.Email"></label>
+        <input type="email" class="form-control" id="email" asp-for="@Model.Email" />
+        <span class="text-danger" asp-validation-for="@Model.Email"></span>
+    </div>
+
+    <div class="my-2">
+        <label class="form-label" for="birthDate" asp-for="@Model.BirthDate"></label>
+        <input type="date" class="form-control" id="birthDate" asp-for="@Model.BirthDate" />
+        <span class="text-danger" asp-validation-for="@Model.BirthDate"></span>
+    </div>
+
+    <div class="my-2">
+        <label class="form-label" for="email" asp-for="@Model.Email"></label>
+        <input class="form-control" id="email" asp-for="@Model.Email" />
+        <span class="text-danger" asp-validation-for="@Model.Email"></span>
+    </div>
+
+    <div class="my-2">
+        <label class="form-label" for="password" asp-for="@Model.Password"></label>
+        <input type="password" class="form-control" id="password" asp-for="@Model.Password" />
+        <span class="text-danger" asp-validation-for="@Model.Password"></span>
+    </div>
+
+    <div class="my-2">
+        <label class="form-label" for="confirmPassword" asp-for="@Model.ConfirmPassword"></label>
+        <input type="password" class="form-control" id="confirmPassword" asp-for="@Model.ConfirmPassword" />
+        <span class="text-danger" asp-validation-for="@Model.ConfirmPassword"></span>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-success">Register</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
