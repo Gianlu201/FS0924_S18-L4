@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using FS0924_S18_L4.Services;
 using FS0924_S18_L4.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,16 +19,23 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    public async Task<IActionResult> Privacy()
     {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(
-            new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier }
+        bool emailSent = await EmailService.SendEmailAsync(
+            "email@example.com",
+            "Test SendGrid",
+            "Questa è una email di prova inviata da ASP.NET MVC."
         );
+
+        if (emailSent)
+        {
+            Console.WriteLine("Email inviata correttamente!");
+        }
+        else
+        {
+            Console.WriteLine("Errore nell'invio della mail!");
+        }
+
+        return View();
     }
 }

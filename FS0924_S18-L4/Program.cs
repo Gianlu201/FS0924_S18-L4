@@ -62,6 +62,7 @@ builder
     });
 
 builder.Services.AddScoped<SchoolClassService>();
+builder.Services.AddScoped<EmailService>();
 
 builder.Services.AddScoped<UserManager<ApplicationUser>>();
 builder.Services.AddScoped<SignInManager<ApplicationUser>>();
