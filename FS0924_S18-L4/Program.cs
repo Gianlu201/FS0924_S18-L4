@@ -1,5 +1,6 @@
 using FS0924_S18_L4.Data;
 using FS0924_S18_L4.Models;
+using FS0924_S18_L4.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -59,6 +60,8 @@ builder
         options.ExpireTimeSpan = TimeSpan.FromHours(1);
         options.Cookie.Name = "EpiSchoolAuth";
     });
+
+builder.Services.AddScoped<SchoolClassService>();
 
 builder.Services.AddScoped<UserManager<ApplicationUser>>();
 builder.Services.AddScoped<SignInManager<ApplicationUser>>();

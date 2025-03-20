@@ -1,0 +1,46 @@
+﻿@model EditUserByAdminViewModel
+
+@{
+    ViewData["Title"] = "Register";
+    var schoolClasses = ViewBag.Classes as ClassesListViewModel;
+}
+
+<form method="post" asp-controller="Account" asp-action="EditbyAdmin" asp-route-id="@Model.Id">
+    <div>
+        <input hidden asp-for="Id" />
+    </div>
+
+    <div class="my-2">
+        <label class="form-label" for="firstName" asp-for="@Model.FirstName"></label>
+        <input class="form-control" id="firstName" asp-for="@Model.FirstName" />
+        <span class="text-danger" asp-validation-for="@Model.FirstName"></span>
+    </div>
+
+    <div class="my-2">
+        <label class="form-label" for="lastName" asp-for="@Model.LastName"></label>
+        <input class="form-control" id="lastName" asp-for="@Model.LastName" />
+        <span class="text-danger" asp-validation-for="@Model.LastName"></span>
+    </div>
+
+    <div class="my-2">
+        <label class="form-label" for="schoolClass" asp-for="@Model.SchoolClassId"></label>
+        <select class="form-select" id="schoolClass" asp-for="@Model.SchoolClassId">
+            <option value="">Select a class</option>
+            @foreach (var schoolClass in schoolClasses.Classes)
+            {
+                <option value="@schoolClass.SchoolClassId">@schoolClass.SchoolClassName</option>
+            }
+        </select>
+        <span class="text-danger" asp-validation-for="@Model.SchoolClassId"></span>
+    </div>
+
+
+
+    <div>
+        <button type="submit" class="btn btn-success">Register</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

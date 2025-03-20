@@ -1,0 +1,47 @@
+﻿@model UsersListViewModel
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h2>Users</h2>
+
+<div class="container">
+    <table class="table table-striped table-hover" id="userTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Class</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var user in Model.Users)
+            {
+            <tr>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.Email</td>
+                <td>@user.SchoolClass?.SchoolClassName</td>
+                <td>@user.ApplicationUserRole.FirstOrDefault()?.Role</td>
+                <td>
+                        <a class="btn btn-sm btn-warning" asp-controller="Account" asp-action="EditbyAdmin" asp-route-id="@user.Id">Edit</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if(true) {}
+
+@section scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let table = new DataTable('#userTable');
+        });
+    </script>
+}
